@@ -1,0 +1,154 @@
+/* ==========================================================================
+   Login page (/login) -- restyled to match the landing page's premium
+   gold / ivory / charcoal system instead of the generic blue-accent shell
+   theme in global.css. LoginPage.jsx wraps its markup in the same
+   `.landing` class the landing page uses, imports landing.css alongside
+   this file, and so inherits every --lp-* token plus a handful of existing
+   landing utility classes (.lp-btn, .lp-eyebrow, .lp-ring, .lp-nav__brand)
+   directly -- no new tokens, no touching landing.css or Landing.jsx.
+
+   Purely presentational: every class here only wraps the SAME form markup,
+   handlers, and auth/routing logic LoginPage.jsx already had.
+   ========================================================================== */
+
+.login-landing {
+  min-height: 100vh;
+  background: var(--lp-charcoal);
+  color: var(--lp-paper);
+  display: flex;
+  flex-direction: column;
+}
+
+.login-landing__nav { padding: 1.1rem 2rem; }
+.login-landing__nav .lp-nav__brand { padding: 0; }
+
+.login-landing__main {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem 4rem;
+  overflow: hidden;
+  background: radial-gradient(ellipse 900px 480px at 50% 0%, rgba(201, 162, 75, 0.16), transparent 62%);
+}
+
+.login-landing__ambient {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.login-landing__card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  background: rgba(23, 19, 15, 0.82);
+  border: 1px solid var(--lp-gold-line);
+  border-radius: 18px;
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(201, 162, 75, 0.06);
+  backdrop-filter: blur(6px);
+  padding: 2.25rem 2rem 2rem;
+}
+
+.login-landing__title {
+  font-family: var(--lp-font-display);
+  font-weight: 700;
+  font-size: 1.9rem;
+  letter-spacing: -0.01em;
+  color: var(--lp-paper);
+  margin: 0.7rem 0 0.35rem;
+}
+.login-landing__sub {
+  margin: 0 0 1.5rem;
+  color: var(--lp-muted-dark);
+  font-size: 0.92rem;
+}
+
+.login-landing__tabs {
+  display: flex;
+  gap: 0.25rem;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--lp-border-dark);
+  border-radius: 10px;
+  padding: 0.25rem;
+  margin-bottom: 1.4rem;
+}
+.login-landing__tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--lp-muted-dark);
+  font: inherit;
+  font-size: 0.86rem;
+  padding: 0.55rem;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: color 160ms ease, background-color 160ms ease;
+}
+.login-landing__tab--active {
+  background: rgba(201, 162, 75, 0.14);
+  color: var(--lp-gold-bright);
+  font-weight: 600;
+}
+@media (prefers-reduced-motion: reduce) { .login-landing__tab { transition: none; } }
+
+.login-landing__form { display: flex; flex-direction: column; gap: 1rem; }
+.login-landing__row { display: flex; gap: 0.85rem; }
+.login-landing__row label { flex: 1; min-width: 0; }
+@media (max-width: 420px) { .login-landing__row { flex-direction: column; gap: 1rem; } }
+.login-landing__form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: var(--lp-font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--lp-muted-dark);
+}
+.login-landing__form input {
+  font-family: var(--lp-font-body);
+  font-size: 0.95rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: 9px;
+  border: 1px solid var(--lp-border-dark);
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--lp-paper);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+.login-landing__form input::placeholder { color: rgba(248, 244, 236, 0.32); }
+.login-landing__form input:focus {
+  outline: none;
+  border-color: var(--lp-gold-line);
+  box-shadow: 0 0 0 3px rgba(201, 162, 75, 0.14);
+}
+.login-landing__form .lp-btn { width: 100%; margin-top: 0.3rem; }
+
+.login-landing .notice { font-family: var(--lp-font-body); font-size: 0.86rem; color: var(--lp-gold-bright); margin: 0; }
+.login-landing .notice.error { color: #e6836f; }
+
+.login-landing__switch {
+  text-align: center;
+  color: var(--lp-muted-dark);
+  font-size: 0.88rem;
+  margin: 1.4rem 0 0;
+}
+.login-landing__switch .link-button {
+  background: none; border: none; padding: 0;
+  color: var(--lp-gold-bright);
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+  transition: color 140ms ease;
+}
+.login-landing__switch .link-button:hover { color: var(--lp-gold); }
+
+@media (max-width: 480px) {
+  .login-landing__card { padding: 1.85rem 1.4rem 1.6rem; }
+}

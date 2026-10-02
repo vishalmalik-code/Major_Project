@@ -1,0 +1,75 @@
+{
+  "dataset_name": "QueryFirewall Cybersecurity & LLM-Security Instruction Dataset",
+  "purpose": "A standalone instruction/response dataset for LoRA/QLoRA fine-tuning of a small pretrained language model into a domain-adapted cybersecurity assistant. Covers general cybersecurity fundamentals alongside LLM/AI security topics (prompt injection, model extraction, jailbreaking, etc.) so the resulting model stays useful beyond one narrow topic. This dataset is NOT connected to any application, backend, database, API, or firewall system - it is a plain data artifact intended to be copied into a project's data/ or datasets/ folder for offline fine-tuning.",
+  "num_examples": 4940,
+  "train_count": 4446,
+  "validation_count": 494,
+  "train_validation_split": "90/10, stratified per category",
+  "categories": {
+    "Authentication": {
+      "total": 437,
+      "train": 393,
+      "validation": 44
+    },
+    "Cryptography": {
+      "total": 378,
+      "train": 340,
+      "validation": 38
+    },
+    "Cybersecurity Fundamentals": {
+      "total": 531,
+      "train": 478,
+      "validation": 53
+    },
+    "Defensive Practices": {
+      "total": 317,
+      "train": 285,
+      "validation": 32
+    },
+    "Incident Response": {
+      "total": 311,
+      "train": 280,
+      "validation": 31
+    },
+    "LLM Security": {
+      "total": 662,
+      "train": 596,
+      "validation": 66
+    },
+    "Malware Concepts": {
+      "total": 404,
+      "train": 364,
+      "validation": 40
+    },
+    "Network Security": {
+      "total": 556,
+      "train": 500,
+      "validation": 56
+    },
+    "Secure Coding": {
+      "total": 453,
+      "train": 408,
+      "validation": 45
+    },
+    "Threat Detection": {
+      "total": 264,
+      "train": 238,
+      "validation": 26
+    },
+    "Web Security": {
+      "total": 627,
+      "train": 564,
+      "validation": 63
+    }
+  },
+  "format": {
+    "file_type": "JSON Lines (.jsonl), one JSON object per line",
+    "schema": {
+      "instruction": "string - the question, task, or prompt",
+      "input": "string - optional supporting context (scenario description, log excerpt, etc.); empty string when not needed",
+      "output": "string - the target response the model should learn to produce"
+    }
+  },
+  "generation_methodology": "Examples were synthetically generated offline from a curated, hand-authored knowledge base (170 cybersecurity/LLM-security concepts and 53 concept-pair comparisons, each with hand-written definition, mechanism, mitigation, impact, detection, and common-mistake fields, plus short code snippets for code-relevant topics). A pool of ~28 question templates and multiple answer-assembly patterns with varied connector phrasing were combined with each concept to produce diverse, non-formulaic instruction/output pairs, plus a small set of hand-written scenario-with-input examples for troubleshooting-style variety. All instructions were deduplicated case-insensitively; no live model, external API, or web scraping was used to produce this dataset.",
+  "recommended_finetuning_use": "Intended for parameter-efficient fine-tuning (LoRA or QLoRA) of a small open-weight instruction-tuned base model (in the 1B-8B parameter range) to specialize it as a cybersecurity explainer/assistant. Suggested recipe: format each record with your base model's chat/instruction template (e.g. Alpaca-style 'Instruction / Input / Response'), train for 2-3 epochs with a small learning rate (1e-4 to 2e-4 for LoRA), rank 8-16, and use the validation split for held-out loss monitoring and early stopping rather than as a benchmark of general capability."
+}

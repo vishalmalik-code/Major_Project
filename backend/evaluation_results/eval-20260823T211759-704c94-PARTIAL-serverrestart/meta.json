@@ -1,0 +1,8 @@
+{
+  "run_id": "eval-20260823T211759-704c94",
+  "base_seed": 2024,
+  "target": "http://localhost:8000",
+  "finished_at": "2026-08-23T21:36:57.662609+00:00",
+  "attacker_count": 10,
+  "normal_count": 10
+}

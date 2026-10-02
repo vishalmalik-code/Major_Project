@@ -1,0 +1,23 @@
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# env
+.env
+backend/.env
+
+# node
+node_modules/
+dist/
+
+# models / caches
+.cache/
+*.log
+
+# attacker/normal-user simulator run output (raw per-query logs; the
+# aggregated evaluation_results/ reports ARE kept and tracked)
+backend/attacker_logs/
+backend/normal_user_logs/
